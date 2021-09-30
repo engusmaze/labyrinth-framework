@@ -1,0 +1,78 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./labyrinth.js":
+/*!**********************!*\
+  !*** ./labyrinth.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.on = exports.loadCSS = exports.addCSS = exports.c = exports.g = exports.head = exports.body = exports.Event = exports.id = exports.Class = exports.ID = exports.ClassName = exports.Property = exports.Canvas = exports.Elem = exports.splitArrayIntoChunks = exports.downloadURI = void 0;\r\nconst shrtct_1 = __webpack_require__(/*! shrtct */ \"./node_modules/shrtct/shrtct.js\");\r\nfunction downloadURI(uri, filename) {\r\n    var link = shrtct_1.doc.createElement(\"a\");\r\n    link.download = filename;\r\n    link.href = uri;\r\n    link.click();\r\n}\r\nexports.downloadURI = downloadURI;\r\nfunction splitArrayIntoChunks(array, chunkSize) {\r\n    let arr = [];\r\n    for (let i = 0; i < array.length; i += chunkSize)\r\n        arr.push(array.slice(i, i + chunkSize));\r\n    return arr;\r\n}\r\nexports.splitArrayIntoChunks = splitArrayIntoChunks;\r\nclass Elem {\r\n    /**\r\n     * HTML element that was passed to the constructor of this object\r\n     */\r\n    element;\r\n    /**\r\n     * Style of html element\r\n     */\r\n    style;\r\n    parent;\r\n    children = [];\r\n    constructor(element) {\r\n        this.element = element;\r\n        this.style = this.element.style;\r\n    }\r\n    /**\r\n     * Makes element fullscreen\r\n     */\r\n    fullscreen() {\r\n        if (shrtct_1.doc.fullscreenElement !== this.element)\r\n            this.element.requestFullscreen();\r\n    }\r\n    /**\r\n     * Makes element fullscreen\r\n     */\r\n    pointerLock() {\r\n        if (shrtct_1.doc.pointerLockElement !== this.element)\r\n            this.element.requestPointerLock();\r\n    }\r\n    /**\r\n     * Equivalent to addEventListener, but looks like it's taken from node.js\r\n     */\r\n    on(type, listener, options) {\r\n        const self = this;\r\n        return this.element.addEventListener(type, (ev) => {\r\n            listener(ev, self);\r\n        }, options);\r\n    }\r\n    /**\r\n     * Inner text of the element\r\n     */\r\n    get text() {\r\n        return this.element.innerText;\r\n    }\r\n    set text(innerText) {\r\n        this.element.innerText = innerText;\r\n    }\r\n    /**\r\n     * Inner html-code of the element\r\n     */\r\n    get html() {\r\n        return this.element.innerHTML;\r\n    }\r\n    set html(innerHTML) {\r\n        this.element.innerHTML = innerHTML;\r\n    }\r\n    /**\r\n     * Element class name\r\n     */\r\n    get class() {\r\n        return this.element.className;\r\n    }\r\n    set class(className) {\r\n        this.element.className = className;\r\n    }\r\n    /**\r\n     * Element class name\r\n     */\r\n    get id() {\r\n        return this.element.id;\r\n    }\r\n    set id(id) {\r\n        this.element.id = id;\r\n    }\r\n    /**\r\n     * Removes an element from the document\r\n     */\r\n    remove() {\r\n        let els = this.parent?.children;\r\n        if (els !== undefined)\r\n            els.splice(els.indexOf(this), 1);\r\n        this.element.remove();\r\n    }\r\n    /**\r\n     * Adds a node as a child to this node\r\n     */\r\n    add(obj) {\r\n        obj.parent = this;\r\n        this.children.push(obj);\r\n        this.element.appendChild(obj.element);\r\n        return obj;\r\n    }\r\n    /**\r\n     * Removes a child node from this node\r\n     */\r\n    removeChild(obj) {\r\n        this.children.splice(this.children.indexOf(obj), 1);\r\n        this.element.removeChild(obj.element);\r\n        return obj;\r\n    }\r\n    /**\r\n     * Removes child nodes\r\n     */\r\n    removeChildren() {\r\n        this.children = [];\r\n        this.element.innerHTML = \"\"; // Easiest way to remove all child nodes from document\r\n    }\r\n    /**\r\n     * Creates element and adds is to this element\r\n     */\r\n    new(tagName, ...options) {\r\n        return this.add(c(tagName, ...options));\r\n    }\r\n}\r\nexports.Elem = Elem;\r\nclass Canvas extends Elem {\r\n    ctx;\r\n    constructor() {\r\n        super(shrtct_1.doc.createElement(\"canvas\"));\r\n        let ctx = this.context(\"2d\");\r\n        if (ctx !== null) {\r\n            this.ctx = ctx;\r\n        }\r\n        else {\r\n            throw \"Unable to get context\";\r\n        }\r\n        // this.ctx?.strokeStyle =\r\n    }\r\n    get width() {\r\n        return this.element.width;\r\n    }\r\n    set width(n) {\r\n        this.element.width = n;\r\n    }\r\n    get height() {\r\n        return this.element.height;\r\n    }\r\n    set height(n) {\r\n        this.element.height = n;\r\n    }\r\n    /**\r\n     * Equivalent to strokeStyle at context\r\n     */\r\n    get strokeStyle() {\r\n        return this.ctx.strokeStyle;\r\n    }\r\n    set strokeStyle(style) {\r\n        this.ctx.strokeStyle = style;\r\n    }\r\n    /**\r\n     * Equivalent to fillStyle at context\r\n     */\r\n    get fillStyle() {\r\n        return this.ctx.fillStyle;\r\n    }\r\n    set fillStyle(style) {\r\n        this.ctx.fillStyle = style;\r\n    }\r\n    context(contextId, options) {\r\n        return this.element.getContext(contextId, options);\r\n    }\r\n}\r\nexports.Canvas = Canvas;\r\nclass Property {\r\n    apply(element) { }\r\n}\r\nexports.Property = Property;\r\nclass ClassName extends Property {\r\n    name;\r\n    constructor(name) {\r\n        super();\r\n        this.name = name;\r\n    }\r\n    apply(element) {\r\n        element.class = this.name;\r\n    }\r\n}\r\nexports.ClassName = ClassName;\r\nclass ID extends Property {\r\n    id;\r\n    constructor(id) {\r\n        super();\r\n        this.id = id;\r\n    }\r\n    apply(element) {\r\n        element.id = this.id;\r\n    }\r\n}\r\nexports.ID = ID;\r\nfunction Class(name) {\r\n    return new ClassName(name);\r\n}\r\nexports.Class = Class;\r\nfunction id(id) {\r\n    return new ID(id);\r\n}\r\nexports.id = id;\r\nclass Event {\r\n    type;\r\n    listener;\r\n    options;\r\n    constructor(type, listener, options) {\r\n        this.type = type;\r\n        this.listener = listener;\r\n        this.options = options;\r\n    }\r\n}\r\nexports.Event = Event;\r\nexports.body = new Elem(shrtct_1.doc.body);\r\nexports.head = new Elem(shrtct_1.doc.head);\r\n/**\r\n * Gets already created element from doc and returs as Elem object\r\n */\r\nfunction g(text) {\r\n    var e = null;\r\n    switch (text[0]) {\r\n        case \"#\":\r\n            e = shrtct_1.doc.getElementById(text.substr(1));\r\n            break;\r\n        case \".\":\r\n            e = shrtct_1.doc.getElementsByClassName(text.substr(1))[0];\r\n            break;\r\n        default:\r\n            e = shrtct_1.doc.getElementsByTagName(text)[0];\r\n            break;\r\n    }\r\n    if (e instanceof HTMLElement)\r\n        return new Elem(e);\r\n    throw new Error(\"Unable to find element: \" + text);\r\n}\r\nexports.g = g;\r\n/**\r\n * Creates html element and returns Elem object\r\n * You can pass in setting something like class: \"anyclass\" and it will automatically apply the setting\r\n */\r\nfunction c(tagName, ...options) {\r\n    let el = new Elem(shrtct_1.doc.createElement(tagName));\r\n    for (const option of options) {\r\n        if (typeof option === \"string\") {\r\n            el.element.innerHTML = option;\r\n        }\r\n        else if (option instanceof Event) {\r\n            el.on(option.type, option.listener, option.options);\r\n        }\r\n        else if (option instanceof Property) {\r\n            option.apply(el);\r\n        }\r\n        else {\r\n            for (const [key, value] of Object.entries(option)) {\r\n                switch (key) {\r\n                    case \"style\":\r\n                        Object.assign(el.element.style, value);\r\n                        break;\r\n                    case \"text\":\r\n                        el.element.innerText = value;\r\n                        break;\r\n                    case \"html\":\r\n                        el.element.innerHTML = value;\r\n                        break;\r\n                    case \"html\":\r\n                        el.element.innerHTML = value;\r\n                        break;\r\n                    case \"children\":\r\n                        for (const child of value)\r\n                            el.add(child);\r\n                        break;\r\n                    case \"events\":\r\n                        for (const event of value)\r\n                            el.on(event.type, event.listener, event.options);\r\n                        break;\r\n                    case \"event\":\r\n                        el.on(value.type, value.listener, value.options);\r\n                        break;\r\n                    default:\r\n                        el.element.setAttribute(key, value);\r\n                        break;\r\n                }\r\n            }\r\n        }\r\n    }\r\n    return el;\r\n}\r\nexports.c = c;\r\n/**\r\n * Creates style element with cssText inside.\r\n * @param cssText\r\n * @returns Elem\r\n */\r\nfunction addCSS(cssText) {\r\n    return exports.head.new(\"style\", cssText);\r\n}\r\nexports.addCSS = addCSS;\r\nfunction loadCSS(src) {\r\n    return exports.head.new(\"link\", {\r\n        rel: \"stylesheet\",\r\n        type: \"text/css\",\r\n        href: src,\r\n    });\r\n}\r\nexports.loadCSS = loadCSS;\r\nfunction on(type, listener, options) {\r\n    return new Event(type, listener, options);\r\n}\r\nexports.on = on;\r\n\n\n//# sourceURL=webpack://labyrinth-framework/./labyrinth.js?");
+
+/***/ }),
+
+/***/ "./node_modules/shrtct/shrtct.js":
+/*!***************************************!*\
+  !*** ./node_modules/shrtct/shrtct.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.tan = exports.sqrt = exports.sin = exports.round = exports.random = exports.pow = exports.min = exports.max = exports.log1p = exports.log2 = exports.log10 = exports.log = exports.floor = exports.exp = exports.cos = exports.ceil = exports.atan2 = exports.atan = exports.asin = exports.acos = exports.abs = exports.SQRT2 = exports.SQRT1_2 = exports.PI = exports.LOG10E = exports.LOG2E = exports.LN2 = exports.LN10 = exports.E = exports.EPS = exports.time = exports.trace = exports.assert = exports.error = exports.print = exports.doc = exports.win = exports.nav = void 0;\r\nconst m = Math;\r\nif (typeof window !== \"undefined\") {\r\n    exports.nav = navigator;\r\n    exports.doc = document;\r\n    exports.win = window;\r\n}\r\nexports.print = console.log, exports.error = console.error, exports.assert = console.assert, exports.trace = console.trace, exports.time = Date.now, exports.EPS = Number.EPSILON, exports.E = m.E, exports.LN10 = m.LN10, exports.LN2 = m.LN2, exports.LOG2E = m.LOG2E, exports.LOG10E = m.LOG10E, exports.PI = m.PI, exports.SQRT1_2 = m.SQRT1_2, exports.SQRT2 = m.SQRT2, exports.abs = m.abs, exports.acos = m.acos, exports.asin = m.asin, exports.atan = m.atan, exports.atan2 = m.atan2, exports.ceil = m.ceil, exports.cos = m.cos, exports.exp = m.exp, exports.floor = m.floor, exports.log = m.log, exports.log10 = m.log10, exports.log2 = m.log2, exports.log1p = m.log1p, exports.max = m.max, exports.min = m.min, exports.pow = m.pow, exports.random = m.random, exports.round = m.round, exports.sin = m.sin, exports.sqrt = m.sqrt, exports.tan = m.tan;\r\n\n\n//# sourceURL=webpack://labyrinth-framework/./node_modules/shrtct/shrtct.js?");
+
+/***/ }),
+
+/***/ "./test.js":
+/*!*****************!*\
+  !*** ./test.js ***!
+  \*****************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("let { c, body, addCSS, on, Class, id } = __webpack_require__(/*! ./labyrinth */ \"./labyrinth.js\");\r\n\r\naddCSS(`@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');\r\n* {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: #f8f9fa;\r\n}\r\nh1 {\r\n    font-size: 3em;\r\n}\r\np {\r\n    font-size: 1.5em;\r\n}\r\na {\r\n    color: #24c99a;\r\n}\r\nbody {\r\n    background: #212529;\r\n    width: 100%;\r\n    overflow-x: hidden;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n}\r\nbutton {\r\n    margin: 2px;\r\n}\r\n#a {\r\n    color: #212529;\r\n    background: #fdc02f;\r\n    border: 0;\r\n    border-radius: 4px;\r\n    font-size: 1.5em;\r\n    padding: 4px 12px 4px 12px;\r\n    transition: background 0.1s;\r\n}\r\n#a:hover {\r\n    background: #ca9924;\r\n}\r\n.b {\r\n    background: #2b71f9;\r\n    border: 0;\r\n    border-radius: 4px;\r\n    font-size: 1.5em;\r\n    padding: 4px 12px 4px 12px;\r\n    transition: background 0.1s ease-in-out;\r\n}\r\n.b:hover {\r\n    background: #215ac7;\r\n}`);\r\n\r\nbody.new(\"h1\", \"Tests:\");\r\n\r\nbody.new(\"p\", \"<a>✔</a> body.new(...)\");\r\nbody.add(c(\"p\", \"<a>✔</a> body.add(c(...))\"));\r\nbody.new(\"p\", \"<a>✔</a> addCSS(...)\");\r\n\r\nbody.new(\r\n\t\"button\",\r\n\t\"test button\",\r\n\tid(\"a\"),\r\n\ton(\"click\", () =>\r\n\t\tbody.new(\r\n\t\t\t\"button\",\r\n\t\t\t\"test button <a>✔</a>\",\r\n\t\t\tClass(\"b\"),\r\n\t\t\ton(\"click\", (ev, elem) => elem.remove())\r\n\t\t)\r\n\t)\r\n);\r\n\n\n//# sourceURL=webpack://labyrinth-framework/./test.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./test.js");
+/******/ 	
+/******/ })()
+;

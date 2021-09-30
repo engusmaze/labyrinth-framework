@@ -1,0 +1,24 @@
+{
+	"name": "labyrinth-framework",
+	"version": "0.1.4",
+	"description": "A shortcut library for creating wabsites",
+	"main": "labyrinth.js",
+	"scripts": {
+		"test": "start test/test.html",
+		"build test": "webpack"
+	},
+	"author": "engus-maze",
+	"license": "MIT",
+	"keywords": [
+		"labyrinth",
+		"framework",
+		"browser",
+		"shortcut",
+		"vue",
+		"react",
+		"angular"
+	],
+	"dependencies": {
+		"shrtct": "^0.1.0"
+	}
+}
